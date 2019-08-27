@@ -1,0 +1,23 @@
+{
+  "model": "OPEL",
+  "price": 720905,
+  "mileage": 178899,
+  "engine": {
+    "engineType": "DIESEL",
+    "power": 102.2
+  },
+  "carBody": {
+    "color": "RED",
+    "type": "COMBI",
+    "components": [
+      "RADIO",
+      "GPS",
+      "TV"
+    ]
+  },
+  "wheel": {
+    "model": "Motiv",
+    "size": 21,
+    "tyreType": "SUMMER"
+  }
+}

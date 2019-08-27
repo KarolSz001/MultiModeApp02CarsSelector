@@ -1,0 +1,5 @@
+com\app\enums\Criterion2.class
+com\app\enums\EngineType.class
+com\app\enums\TyreType.class
+com\app\enums\CarBodyColor.class
+com\app\enums\CarBodyType.class

@@ -1,0 +1,23 @@
+{
+  "model": "FIAT",
+  "price": 418369,
+  "mileage": 322273,
+  "engine": {
+    "engineType": "GASOLINE",
+    "power": 120.5
+  },
+  "carBody": {
+    "color": "SILVER",
+    "type": "HATCHBACK",
+    "components": [
+      "ABS",
+      "GPS",
+      "TV"
+    ]
+  },
+  "wheel": {
+    "model": "Motiv",
+    "size": 21,
+    "tyreType": "SUMMER"
+  }
+}

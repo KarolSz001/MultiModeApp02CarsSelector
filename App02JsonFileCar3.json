@@ -1,0 +1,23 @@
+{
+  "model": "OPEL",
+  "price": 926970,
+  "mileage": 248214,
+  "engine": {
+    "engineType": "DIESEL",
+    "power": 81.0
+  },
+  "carBody": {
+    "color": "BLUE",
+    "type": "SEDAN",
+    "components": [
+      "RADIO",
+      "ABS",
+      "GPS"
+    ]
+  },
+  "wheel": {
+    "model": "Motiv",
+    "size": 17,
+    "tyreType": "WINTER"
+  }
+}
