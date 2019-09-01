@@ -1,0 +1,23 @@
+{
+  "model": "TESLA",
+  "price": 819543,
+  "mileage": 487823,
+  "engine": {
+    "engineType": "DIESEL",
+    "power": 81.0
+  },
+  "carBody": {
+    "color": "RED",
+    "type": "HATCHBACK",
+    "components": [
+      "RADIO",
+      "ABS",
+      "GPS"
+    ]
+  },
+  "wheel": {
+    "model": "DEBICA",
+    "size": 19,
+    "tyreType": "SUMMER"
+  }
+}

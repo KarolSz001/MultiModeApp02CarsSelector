@@ -1,5 +1,13 @@
-com\app\model\Wheel.class
-com\app\model\CarGenerator2.class
-com\app\model\Car2.class
+com\app\model\CarGenerator$WheelGenerator.class
+com\app\model\Car.class
+com\app\model\CarBody$CarBodyBuilder.class
 com\app\model\Engine.class
+com\app\model\CarGenerator$EngineGenerator.class
+com\app\model\Wheel.class
+com\app\model\Wheel$WheelBuilder.class
+com\app\model\Engine$EngineBuilder.class
+com\app\model\CarGenerator$CarBodyGenerator.class
+com\app\model\Car$CarBuilder.class
+com\app\model\valid\CarValidator.class
+com\app\model\CarGenerator.class
 com\app\model\CarBody.class

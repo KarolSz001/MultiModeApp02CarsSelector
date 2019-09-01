@@ -1,6 +1,6 @@
 package com.app.utility;
 
-public class ScreenManager2 {
+public class ScreenManager {
 
     public static void clearScreen2() {
         System.out.println(new String(new char[10]).replace("\0", "\r\n"));

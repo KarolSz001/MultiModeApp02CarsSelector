@@ -1,12 +1,12 @@
 package com.app.main;
 
 
-import com.app.service.ControlAppService2;
+import com.app.service.ControlAppService;
 
 public class Main02 {
     public static void main(String[] args) {
-        final String appName = "CarsApp02 v1.01 27.04.2019 _K.Szot";
-        ControlAppService2 ca2 = new ControlAppService2();
+        final String appName = "CarsApp02 v1.01 31.08.2019 _K.Szot";
+        ControlAppService ca2 = new ControlAppService();
         System.out.println(appName);
         ca2.runApp();
     }

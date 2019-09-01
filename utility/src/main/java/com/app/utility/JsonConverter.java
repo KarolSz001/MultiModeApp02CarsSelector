@@ -1,6 +1,6 @@
 package com.app.utility;
 
-import com.app.exception.MyUncheckedException2;
+import com.app.exception.MyUncheckedException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -12,13 +12,13 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Optional;
 
-public abstract class JsonConverter2<T> {
+public abstract class JsonConverter<T> {
 
     private final String jsonFilename;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final Type type = ((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 
-    public JsonConverter2(String jsonFilename) {
+    public JsonConverter(String jsonFilename) {
 
         this.jsonFilename = jsonFilename;
     }
@@ -27,13 +27,13 @@ public abstract class JsonConverter2<T> {
     public void toJson(final T element){
         try (FileWriter fileWriter = new FileWriter(jsonFilename)) {
             if (element == null) {
-                throw new MyUncheckedException2("ELEMENT IS NULL");
+                throw new MyUncheckedException("ELEMENT IS NULL IN TOJSON");
             }
             gson.toJson(element, fileWriter);
         /*} catch (MyUncheckedException2 e) {
             System.err.println(e.getMessage());*/
         } catch (IOException e) {  // re trow
-            throw new MyUncheckedException2("TO JSON - JSON FILENAME EXCEPTION");
+            throw new MyUncheckedException("TO JSON - JSON FILENAME EXCEPTION");
         }
     }
 
@@ -42,7 +42,7 @@ public abstract class JsonConverter2<T> {
         try (FileReader fileReader = new FileReader(jsonFilename)) {
             return Optional.of(gson.fromJson(fileReader, type));
         } catch (IOException e) {
-            throw new MyUncheckedException2("FROM JSON - JSON FILENAME EXCEPTION");
+            throw new MyUncheckedException("FROM JSON - JSON FILENAME EXCEPTION");
         }
 //        return Optional.empty();
     }

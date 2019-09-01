@@ -5,13 +5,13 @@ package com.app.utility;
 import com.app.enums.CarBodyType;
 import com.app.enums.Criterion2;
 import com.app.enums.EngineType;
-import com.app.exception.MyUncheckedException2;
+import com.app.exception.MyUncheckedException;
 
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class DataManager2 {
+public class DataManager {
 
     private final Scanner sc = new Scanner(System.in);
 
@@ -19,7 +19,7 @@ public class DataManager2 {
         System.out.println(message);
         String line = sc.nextLine();
         if (line == null || !line.matches("\\d+")) {
-            throw new MyUncheckedException2(" WRONG DATA try again ");
+            throw new MyUncheckedException(" WRONG DATA try again ");
         }
         return Integer.parseInt(line);
     }
@@ -44,7 +44,7 @@ public class DataManager2 {
             System.out.println("Make a choice");
             String number = sc.nextLine();
             if (!number.matches("[1-" + crits.length + "]")) {
-                throw new MyUncheckedException2(" you press wrong number ");
+                throw new MyUncheckedException(" you press wrong number ");
             }
             return crits[Integer.parseInt(number) - 1];
 
@@ -54,7 +54,7 @@ public class DataManager2 {
             String number = sc.nextLine();
 
             if (!number.matches("[123]")) {
-                throw new MyUncheckedException2(" you press wrong number ");
+                throw new MyUncheckedException(" you press wrong number ");
             }
             return crits[Integer.parseInt(number) - 1];
         }
@@ -75,7 +75,7 @@ public class DataManager2 {
         String number = sc.nextLine();
 
         if (!number.matches("[1-" + cbt.length + "]")) {
-            throw new MyUncheckedException2(" wrong number");
+            throw new MyUncheckedException(" wrong number");
         }
         return cbt[Integer.parseInt(number) - 1];
     }
@@ -90,7 +90,7 @@ public class DataManager2 {
         String number = sc.nextLine();
 
         if (!number.matches("[1-" + et.length + "]")) {
-            throw new MyUncheckedException2(" wrong number");
+            throw new MyUncheckedException(" wrong number");
         }
         return et[Integer.parseInt(number) - 1];
     }

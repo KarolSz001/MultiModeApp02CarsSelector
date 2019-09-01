@@ -1,14 +1,14 @@
 {
-  "model": "OPEL",
-  "price": 926970,
-  "mileage": 248214,
+  "model": "TESLA",
+  "price": 819543,
+  "mileage": 487823,
   "engine": {
     "engineType": "DIESEL",
     "power": 81.0
   },
   "carBody": {
-    "color": "BLUE",
-    "type": "SEDAN",
+    "color": "RED",
+    "type": "HATCHBACK",
     "components": [
       "RADIO",
       "ABS",
@@ -16,8 +16,8 @@
     ]
   },
   "wheel": {
-    "model": "Motiv",
-    "size": 17,
-    "tyreType": "WINTER"
+    "model": "DEBICA",
+    "size": 19,
+    "tyreType": "SUMMER"
   }
 }

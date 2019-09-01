@@ -5,9 +5,9 @@ import com.app.enums.CarBodyType;
 import com.app.enums.Criterion2;
 import com.app.enums.EngineType;
 import com.app.enums.TyreType;
-import com.app.exception.MyUncheckedException2;
-import com.app.model.Car2;
-import com.app.utility.CarJsonConverter2;
+import com.app.exception.MyUncheckedException;
+import com.app.model.Car;
+import com.app.utility.CarJsonConverter;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
@@ -17,36 +17,43 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
-public class CarsService2 {
+public class CarsService {
 
-    private Set<Car2> car2Set;
+    private Set<Car> carSet = new HashSet<>();
 
-    public CarsService2(List<String> dataList) {
+    public CarsService(List<String> dataList) {
         if(dataList == null){
-            throw  new MyUncheckedException2(" Argument is null in CarsService2 Constructor ");
+            throw  new MyUncheckedException("Argument is null in CarsService Constructor");
         }
-        this.car2Set = dataLoader(dataList);
+        this.carSet = dataLoader(dataList);
     }
 
-    public Set<Car2> getCar2Set() {
-        return car2Set;
+    public CarsService() {
+    }
+
+    public Set<Car> getCarSet() {
+        return carSet;
+    }
+
+    public void addItem(Car car){
+        carSet.add(car);
     }
 
     @Override
     public String toString() {
         return "CarService{" +
-                "car2Set=" + car2Set +
+                "carSet=" + carSet +
                 '}';
     }
 
-    private static Set<Car2> dataLoader(List<String> filesNameList) {
+    private static Set<Car> dataLoader(List<String> filesNameList) {
         if(filesNameList == null){
-            throw  new MyUncheckedException2(" Argument is null in CarsService2 DataLoader ");
+            throw  new MyUncheckedException(" Argument is null in CarsService DataLoader ");
         }
         return filesNameList.stream()
-                .map(m->new CarJsonConverter2(m)
+                .map(m->new CarJsonConverter(m)
                 .fromJson()
-                .orElseThrow(()-> new MyUncheckedException2(" dataLoader Error")))
+                .orElseThrow(()-> new MyUncheckedException(" dataLoader Error")))
                 .collect(Collectors.toSet());
     }
 
@@ -59,33 +66,33 @@ public class CarsService2 {
      * @param isReversOrder
      * @return Set<Car2>
      */
-    public Set<Car2> sortMethodByParam(Criterion2 choice, boolean isReversOrder) {
+    public Set<Car> sortMethodByParam(Criterion2 choice, boolean isReversOrder) {
         System.out.println("solution for task nr 1 --------------->>>>>>>>>>>>");
 //  PRICE,MILEAGE,POWER,NUMBER_COMPONENTS,SIZE_WHEEL,
 
         if (choice == null) {
-            throw new MyUncheckedException2(" null argument in sortMethodByParam method ");
+            throw new MyUncheckedException(" null argument in sortMethodByParam method ");
         }
-        List<Car2> carsList = new ArrayList<>();
+        List<Car> carsList = new ArrayList<>();
                 switch (choice) {
                     case PRICE : {
-                        carsList = car2Set.stream().sorted(Comparator.comparing(Car2::getPrice)).collect(Collectors.toCollection(ArrayList::new));
+                        carsList = carSet.stream().sorted(Comparator.comparing(Car::getPrice)).collect(Collectors.toCollection(ArrayList::new));
                         break;
                     }
                     case MILEAGE : {
-                        carsList = car2Set.stream().sorted(Comparator.comparing(Car2::getMileage)).collect(Collectors.toCollection(ArrayList::new));
+                        carsList = carSet.stream().sorted(Comparator.comparing(Car::getMileage)).collect(Collectors.toCollection(ArrayList::new));
                         break;
                     }
                     case POWER : {
-                        carsList = car2Set.stream().sorted(Comparator.comparing(s -> s.getEngine().getPower())).collect(Collectors.toCollection(ArrayList::new));
+                        carsList = carSet.stream().sorted(Comparator.comparing(s -> s.getEngine().getPower())).collect(Collectors.toCollection(ArrayList::new));
                         break;
                     }
                     case NUMBER_COMPONENTS : {
-                        carsList =  car2Set.stream().sorted(Comparator.comparing(m -> m.getCarBody().getComponents().size())).collect(Collectors.toCollection(ArrayList::new));
+                        carsList =  carSet.stream().sorted(Comparator.comparing(m -> m.getCarBody().getComponents().size())).collect(Collectors.toCollection(ArrayList::new));
                         break;
                     }
                     case SIZE_WHEEL : {
-                        carsList  = car2Set.stream().sorted(Comparator.comparing(c -> c.getWheel().getSize())).collect(Collectors.toCollection(ArrayList::new));
+                        carsList  = carSet.stream().sorted(Comparator.comparing(c -> c.getWheel().getSize())).collect(Collectors.toCollection(ArrayList::new));
                         break;
                     }
         };
@@ -104,15 +111,15 @@ public class CarsService2 {
      * @param max -> minimum price
      * @return Set<String>
      */
-    public Set<Car2> carBodyCollectionByPrice(CarBodyType cBT, BigDecimal min, BigDecimal max) {
+    public Set<Car> carBodyCollectionByPrice(CarBodyType cBT, BigDecimal min, BigDecimal max) {
         if(cBT == null || min == null || max == null){
-            throw new MyUncheckedException2("ARGUMENT IN carBodyCollectionByPrice is NULL");
+            throw new MyUncheckedException("ARGUMENT IN carBodyCollectionByPrice is NULL");
         }
         if(min.compareTo(max) > 0){
-            throw new MyUncheckedException2("WRONG RANGE MIN IS BIGGER THAN MAX");
+            throw new MyUncheckedException("WRONG RANGE MIN IS BIGGER THAN MAX");
         }
         System.out.println("solution for task nr 2 --------------->>>>>>>>>>>>");
-        return car2Set.stream()
+        return carSet.stream()
                 .filter(f -> f.getCarBody().getType() == cBT)
                 .filter(ff -> ff.getPrice().compareTo(min) > 0 && ff.getPrice().compareTo(max) < 0)
                 .collect(Collectors.toCollection(LinkedHashSet::new));
@@ -128,9 +135,9 @@ public class CarsService2 {
 // try comparator and then
     public Set<String> carsWithEngineType(EngineType engineType) {
         System.out.println(" solution for task nr 3 --------------->>>>>>>>>>>> ");
-        return car2Set.stream()
+        return carSet.stream()
                 .filter(f -> f.getEngine().getEngineType() == engineType)
-                .map(Car2::getModel)
+                .map(Car::getModel)
                 .sorted(Comparator.comparing(Function.identity()))
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
@@ -148,19 +155,19 @@ public class CarsService2 {
         switch (parameter) {
 
             case PRICE: {
-                BigDecimal aver = car2Set.stream().map(Car2::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add).divideToIntegralValue(new BigDecimal(car2Set.size()));
-                BigDecimal min = car2Set.stream().min(Comparator.comparing(Car2::getPrice)).get().getPrice();
-                BigDecimal max = car2Set.stream().max(Comparator.comparing(Car2::getPrice)).get().getPrice();
+                BigDecimal aver = carSet.stream().map(Car::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add).divideToIntegralValue(new BigDecimal(carSet.size()));
+                BigDecimal min = carSet.stream().min(Comparator.comparing(Car::getPrice)).get().getPrice();
+                BigDecimal max = carSet.stream().max(Comparator.comparing(Car::getPrice)).get().getPrice();
                 System.out.println(MessageFormat.format(" PRICE -> aver {0}, max{1}, min{2} ", aver.setScale(2), max.setScale(2), min.setScale(2)));
                 break;
             }
             case MILEAGE: {
-                iss = car2Set.stream().collect(Collectors.summarizingInt(Car2::getMileage));
+                iss = carSet.stream().collect(Collectors.summarizingInt(Car::getMileage));
                 System.out.println(" MILEAGE ->/aver/max/min  " + iss.getAverage() + " " + iss.getMax() + " " + iss.getMin());
                 break;
             }
             case POWER: {
-                dss = car2Set.stream().collect(Collectors.summarizingDouble(m -> m.getEngine().getPower()));
+                dss = carSet.stream().collect(Collectors.summarizingDouble(m -> m.getEngine().getPower()));
                 DecimalFormat dc =  new DecimalFormat("#0.00");
                 System.out.println(" POWER ->/aver/max/min  " + dc.format(dss.getAverage()) + " " + dc.format(dss.getMax()) + " " + dc.format(dss.getMin()));
                 break;
@@ -174,12 +181,12 @@ public class CarsService2 {
      * @return Map<Car2, Integer>
      */
 
-    public Map<Car2, Integer> mapByCarsAndMileage() {
+    public Map<Car, Integer> mapByCarsAndMileage() {
         System.out.println("solution for task nr 5 --------------->>>>>>>>>>>>");
-        return car2Set.stream()
+        return carSet.stream()
                 .collect(Collectors.toMap(
                        Function.identity(),
-                        Car2::getMileage
+                        Car::getMileage
                 ))
                 .entrySet()
                 .stream()
@@ -199,10 +206,10 @@ public class CarsService2 {
      * @return Map<TyreType, List < Car2>>
      */
 
-    public Map<TyreType, List<Car2>> groupingByTyreType() {
+    public Map<TyreType, List<Car>> groupingByTyreType() {
         System.out.println("solution for task nr 6 --------------->>>>>>>>>>>>");
 
-        return car2Set.stream()
+        return carSet.stream()
                 .collect(Collectors.groupingBy(e -> e.getWheel().getTyreType()
                 ))
                 .entrySet()
