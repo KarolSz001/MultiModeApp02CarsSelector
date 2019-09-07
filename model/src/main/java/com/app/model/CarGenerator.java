@@ -5,7 +5,7 @@ import com.app.enums.CarBodyType;
 import com.app.enums.EngineType;
 import com.app.enums.TyreType;
 import com.app.exception.MyUncheckedException;
-import com.app.model.valid.CarValidator;
+import com.app.model.valid.CarValidatorImpl;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -18,8 +18,7 @@ public class CarGenerator {
 
 
     public static Car carGenerator() {
-
-        CarValidator carValidator = new CarValidator();
+        CarValidatorImpl carValidator = new CarValidatorImpl();
         String model = modelCarGenerator();
         BigDecimal price = priceGenerator();
         int mileage = mileageGenerator();
@@ -28,9 +27,12 @@ public class CarGenerator {
         Wheel wheel = WheelGenerator.wheelGenerator();
         Car car = Car.builder().model(model).price(price).mileage(mileage).engine(engine).carBody(carBody).wheel(wheel).build();
 
-        if (!carValidator.isValidate(car)) {
-            throw new MyUncheckedException(" Car is not valid");
+        if (carValidator.hasErrors()) {
+            System.out.println(" list of errors with validation of car ");
+            carValidator.getErrors().forEach((k, v) -> System.out.println(k + "::::::::::" + v));
+            throw new MyUncheckedException("car is not validate");
         }
+
         return car;
     }
 

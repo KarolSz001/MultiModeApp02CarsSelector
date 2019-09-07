@@ -100,7 +100,7 @@ public class TestCarService {
 
     @Test
     @DisplayName("Test - test mock carService add new car")
-    public void test1() {
+    public void mockCarService() {
 //      verify that the add method was called with argument 'Car'
         carsServiceSetMock.addItem(Car.builder().model("AA").build());
         Mockito.verify(carsServiceSetMock).addItem(Car.builder().model("AA").build());
@@ -114,7 +114,7 @@ public class TestCarService {
 
     @Test
     @DisplayName("Test - test spy carService add new car")
-    public void test2() {
+    public void spyCarsService() {
 //      verify that the add method was called with argument 'Car'
         carsServiceSetSpy.addItem(Car.builder().model("AA").build());
         Mockito.verify(carsServiceSetSpy).addItem(Car.builder().model("AA").build());
