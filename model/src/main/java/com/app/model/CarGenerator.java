@@ -15,8 +15,6 @@ import java.util.Random;
 
 public class CarGenerator {
 
-
-
     public static Car carGenerator() {
         CarValidatorImpl carValidator = new CarValidatorImpl();
         String model = modelCarGenerator();

@@ -22,7 +22,6 @@
         <module>exception</module>
         <module>enums</module>
         <module>utility</module>
-        <module>test</module>
     </modules>
 
     <dependencies>

@@ -1,0 +1,23 @@
+{
+  "model": "SYRENKA",
+  "price": 699482,
+  "mileage": 177472,
+  "engine": {
+    "engineType": "LPG",
+    "power": 102.2
+  },
+  "carBody": {
+    "color": "GREEN",
+    "type": "HATCHBACK",
+    "components": [
+      "RADIO",
+      "GPS",
+      "TV"
+    ]
+  },
+  "wheel": {
+    "model": "PACER",
+    "size": 17,
+    "tyreType": "SUMMER"
+  }
+}

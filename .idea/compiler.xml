@@ -6,7 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="test" />
         <module name="exception" />
         <module name="service" />
         <module name="model" />
@@ -15,5 +14,8 @@
         <module name="enums" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="test" target="12" />
+    </bytecodeTargetLevel>
   </component>
 </project>
